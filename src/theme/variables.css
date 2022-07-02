@@ -28,6 +28,7 @@
     --ion-color-step-900: #e7e7e7;
     --ion-color-step-950: #f3f3f3;
 
+    --ion-color-text-secondary: #777777;
     --ion-color-result-clear: #39e464;
     --ion-color-result-failure: #ff7500;
     --ion-color-result-golden-ikura: #fff046;
@@ -37,14 +38,15 @@
 
 // 設定がダークモード
 body.dark {
-  --ion-color-result-clear: #0c9c30;
-  --ion-color-result-failure: #f52222;
-  --ion-color-result-golden-ikura: #eee21d;
-  --ion-color-result-ikura: #f52222;
+  --ion-color-text-secondary: #777777;
+  --ion-color-result-clear: #39e464;
+  --ion-color-result-failure: #ff7500;
+  --ion-color-result-golden-ikura: #fff046;
+  --ion-color-result-ikura: #ff7500;
 }
 
 body.light {
-  --ion-background-color: #d1d1d1;
+  --ion-background-color: #b1b1b1;
   --ion-background-color-rgb: 18, 18, 18;
 
   --ion-text-color: #111111;
@@ -72,7 +74,11 @@ body.light {
   --ion-color-step-900: #e7e7e7;
   --ion-color-step-950: #f3f3f3;
 
-  --ion-card-background: #d1d1d1;
+  --ion-tab-bar-color: #333333;
+  --ion-tab-bar-background: #b1b1b1;
+
+  --ion-color-text-secondary: #444444;
+  --ion-card-background: #b1b1b1;
   --ion-color-result-clear: #0c9c30;
   --ion-color-result-failure: #f52222;
   --ion-color-result-golden-ikura: #eee21d;

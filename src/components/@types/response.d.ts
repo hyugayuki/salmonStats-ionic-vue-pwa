@@ -16,6 +16,7 @@ export interface WeaponResult {
   shifts_worked: number;
   supplied_weapon_counts: number;
   rank: number;
+  thumbnail_url?: string;
 }
 
 export interface BossResult {
@@ -94,6 +95,7 @@ interface WeaponRank {
   supplied_weapon_counts: number;
   nsaid: string;
   name: string;
+  thumbnail_url?: string;
 }
 
 export interface GradeResult {
@@ -102,6 +104,7 @@ export interface GradeResult {
   grade_point_max: number;
   nsaid: string;
   name: string;
+  thumbnail_url?: string;
 }
 
 interface Ranking {

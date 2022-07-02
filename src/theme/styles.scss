@@ -1,5 +1,10 @@
 * {
   font-family: "Noto Sans JP" !important;
+  -ms-user-select: none; /* IE 10+ */
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 section {
@@ -55,6 +60,7 @@ section {
 
   .coop-ranking-summary-rank {
     width: 10%;
+    max-width: 30px;
   }
 
   .coop-ranking-summary-player {
@@ -97,7 +103,7 @@ ion-label {
 
   &.salmon_id {
     font-size: 0.7rem !important;
-    color: grey !important;
+    color: var(--ion-color-text-secondary) !important;
   }
 
   &.job_clear {
@@ -120,13 +126,11 @@ ion-label {
   }
 
   &.golden_ikura_num {
-    font-size: 0.9rem !important;
     color: var(--ion-color-result-golden-ikura) !important;
     font-weight: bold;
   }
 
   &.ikura_num {
-    font-size: 0.9rem !important;
     color: var(--ion-color-result-ikura) !important;
     font-weight: bold;
   }
@@ -139,7 +143,7 @@ ion-label {
 
   &.datetime {
     font-size: 0.75rem !important;
-    color: grey !important;
+    color: var(--ion-color-text-secondary) !important;
   }
 
   &.stage-name {
@@ -148,7 +152,7 @@ ion-label {
 
   &.prob {
     font-size: 0.8rem !important;
-    color: grey !important;
+    color: var(--ion-color-text-secondary) !important;
 
     &::after {
       content: "%";
@@ -161,12 +165,12 @@ ion-label {
 
   &.nsaid {
     font-size: 0.8rem !important;
-    color: grey !important;
+    color: var(--ion-color-text-secondary) !important;
   }
 
   &.count {
     font-size: 0.8rem !important;
-    color: grey !important;
+    color: var(--ion-color-text-secondary) !important;
   }
 }
 

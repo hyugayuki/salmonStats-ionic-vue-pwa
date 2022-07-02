@@ -1,20 +1,22 @@
 <script lang="ts">
-import { defineComponent, Ref, ref } from 'vue';
-import { useRoute } from 'vue-router';
-import { IonList, IonItem, IonLabel, IonListHeader } from '@ionic/vue';
+import { defineComponent } from 'vue';
+import { IonList, IonItem, IonLabel, IonListHeader, IonImg, IonIcon } from '@ionic/vue';
 import { useI18n } from 'vue-i18n'
-import { LegacyStats, WeaponResult } from './@types/response';
+import { WeaponResult } from './@types/response';
+import { ribbonSharp } from 'ionicons/icons';
 
 export default defineComponent({
   components: {
     IonLabel,
     IonItem,
     IonList,
-    IonListHeader
+    IonListHeader,
+    IonImg,
+    IonIcon
   },
   setup() {
     const { t } = useI18n()
-    return { t };
+    return { t, ribbonSharp };
   },
   mounted: function () {
     console.log("WeaponView Mounted")
@@ -33,20 +35,32 @@ export default defineComponent({
 </script>
 
 <template>
-  <ion-list scrollable class="coop-result-list">
-    <ion-list-header>{{ t("stats_type.WEAPONS") }}</ion-list-header>
-    <ion-item v-for="result in results" :key="result.rank" class="coop-result">
+  <ion-list class="coop-result-list">
+    <ion-list-header>{{ t("stats_type.GRADE") }}</ion-list-header>
+    <ion-item v-for="result in results" :key="result.nsaid" class="coop-result">
       <ion-label>
         <section class="coop-ranking">
           <div class="coop-ranking-summary-rank">
             <ion-label>{{ result.rank }}</ion-label>
           </div>
-          <div class="coop-ranking-summary-player">
-            <ion-label class="player name">{{ result.name }}</ion-label>
-            <ion-label class="count">{{ t(`text.shifts_worked`) }} {{ result.shifts_worked }}</ion-label>
+          <div class="coop-ranking-summary-thumbnail">
+            <ion-icon class="coop-player-verified" :icon="ribbonSharp">
+            </ion-icon>
+            <ion-img class="coop-player-thumbnail" :src="result.thumbnail_url"></ion-img>
           </div>
-          <div class="coop-ranking-summary-score">
-            <span class="golden-ikura num">{{ result.supplied_weapon_counts }}</span>
+          <div class="coop-ranking-summary-player">
+            <ion-label class="nsaid">{{ result.nsaid }}</ion-label>
+            <ion-label>{{ result.name }}</ion-label>
+          </div>
+          <div class="coop-ranking-scores-list">
+            <ul>
+              <li class="coop-ranking-scores-list-item">
+                <ion-label>{{ result.supplied_weapon_counts }}</ion-label>
+              </li>
+              <li class="coop-ranking-scores-list-item">
+                <ion-label class="num">{{ result.shifts_worked }}</ion-label>
+              </li>
+            </ul>
           </div>
         </section>
       </ion-label>
