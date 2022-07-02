@@ -16,38 +16,38 @@ export default defineComponent({
   },
   setup() {
     const { t } = useI18n()
+    const route = useRoute()
+    const { start_time } = route.params
+    const { event_type, water_level, nightless } = route.query
     const results: Ref<WaveResult[]> = ref<WaveResult[]>([]);
-    return { t, results };
+    return { t, start_time, event_type, water_level, nightless, results };
   },
   mounted: function () {
     this.onLoad();
   },
   methods: {
     async onLoad() {
-      const route = useRoute()
-      const { start_time } = route.params
       const waterLevel: number = (() => {
-        if (route.query.water_level === null) {
+        if (this.water_level === null) {
           return 0
         }
-        return parseInt(route.query.water_level as string)
+        return parseInt(this.water_level as string)
       })()
       const eventType: number = (() => {
-        if (route.query.event_type === null) {
+        if (this.event_type === null) {
           return 0
         }
-        return parseInt(route.query.event_type as string)
+        return parseInt(this.event_type as string)
       })()
       const nightless: boolean | null = (() => {
-        if (route.params.nightless === undefined) {
+        if (this.nightless === undefined) {
           return null
         }
-        return route.params.nightless === 'nightless'
+        return this.nightless === 'nightless'
       })()
-      console.log(eventType, waterLevel, nightless);
-      const url = `${process.env.VUE_APP_SERVER_URL}/${process.env.VUE_APP_SERVER_API_VER}/waves/${start_time}?water_level=${waterLevel}&event_type=${eventType}`;
+      const url = `${process.env.VUE_APP_SERVER_URL}/${process.env.VUE_APP_SERVER_API_VER}/waves/${this.start_time}?water_level=${waterLevel}&event_type=${eventType}`;
       const headers = {
-        "cache-control": "force-cache; max-age=600",
+        "cache-control": "force-cache; max-age=3600",
       }
       fetch(url, { headers: headers }).then(response => response.json()).then((response: WaveResult[]) => {
         this.results = response;
