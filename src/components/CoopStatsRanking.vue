@@ -3,7 +3,7 @@ import { defineComponent, Ref, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { IonList, IonItem, IonRefresher, IonContent, IonRefresherContent, IonLabel } from '@ionic/vue';
 import { useI18n } from 'vue-i18n'
-import { TotalRank, Ranking, WaveResult } from './@types/response';
+import { WaveResult } from './@types/response';
 
 export default defineComponent({
   components: {
