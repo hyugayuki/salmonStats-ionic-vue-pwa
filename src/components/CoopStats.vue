@@ -45,7 +45,7 @@ export default defineComponent({
     this.onLoad()
   },
   methods: {
-    onLoad() {
+    onLoad(): void {
       const url = `${process.env.VUE_APP_SERVER_URL}/${process.env.VUE_APP_SERVER_API_VER}/stats/${this.start_time}`;
       const headers = {
         "cache-control": "force-cache; max-age=3600",
@@ -54,13 +54,13 @@ export default defineComponent({
         this.results = response;
       });
     },
-    onRefresh(event: CustomEvent) {
+    onRefresh(event: CustomEvent): void {
       setTimeout(() => {
         this.onLoad()
         event.detail.complete();
       }, 1500);
     },
-    onStatsTypeChanged(event: CustomEvent) {
+    onStatsTypeChanged(event: CustomEvent): void {
       this.statsType = event.detail.value
     },
   },

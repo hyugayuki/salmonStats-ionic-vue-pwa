@@ -35,7 +35,6 @@
   }
 }
 
-// 設定がダークモード
 body.dark {
   --ion-color-result-clear: #0c9c30;
   --ion-color-result-failure: #f52222;
