@@ -28,6 +28,8 @@
     --ion-color-step-900: #e7e7e7;
     --ion-color-step-950: #f3f3f3;
 
+    --ion-card-background: #1e1e1e;
+    --ion-color-text-secondary: #888888;
     --ion-color-result-clear: #39e464;
     --ion-color-result-failure: #ff7500;
     --ion-color-result-golden-ikura: #fff046;
@@ -72,8 +74,9 @@ body.light {
   --ion-color-step-950: #f3f3f3;
 
   --ion-card-background: #d1d1d1;
+  --ion-color-text-secondary: #888888;
   --ion-color-result-clear: #20c140;
   --ion-color-result-failure: #f52222;
-  --ion-color-result-golden-ikura: rgb(232, 175, 6);
+  --ion-color-result-golden-ikura: #e8af06;
   --ion-color-result-ikura: #f52222;
 }
