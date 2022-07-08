@@ -5,6 +5,12 @@ import dayjs from 'dayjs';
 import { createAnimation } from '@ionic/vue';
 import { useI18n } from 'vue-i18n';
 
+interface Schedules {
+  limit: number
+  offset: number
+  results: Schedule[]
+}
+
 interface Schedule {
   start_time: string
   stage_id: number
@@ -106,8 +112,8 @@ export default defineComponent({
     console.log(`SERVER: ${process.env.VUE_APP_SERVER_URL}`);
     console.log(`API: ${process.env.VUE_APP_SERVER_API_VER}`);
     const url = `${process.env.VUE_APP_SERVER_URL}/${process.env.VUE_APP_SERVER_API_VER}/schedules`;
-    fetch(url).then(response => response.json()).then(response => {
-      schedules.value = response
+    fetch(url).then(response => response.json()).then((response: Schedules) => {
+      schedules.value = response.results
     });
 
     return { schedules, StageType, StageName, WeaponType, ionRouter, t, dayjs };
