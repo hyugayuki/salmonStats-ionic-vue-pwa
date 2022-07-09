@@ -3,33 +3,61 @@ import { defineComponent, ref, Ref } from 'vue';
 import { IonLabel, IonItem, IonListHeader } from '@ionic/vue';
 import { useI18n } from "vue-i18n";
 
+interface SystemInfo {
+  os: {
+    dist: string,
+    distversion: string
+  }
+  kernel: string
+  arch: string
+  client: string
+  cpu: {
+    cores: number,
+    type: string
+  }
+}
+
+interface SystemStatus {
+  version: string
+  data: {
+    sys_info: SystemInfo
+  }
+}
+
 export default defineComponent({
   name: 'SettingView',
   components: { IonListHeader, IonItem, IonLabel },
   setup() {
     const { t } = useI18n()
-
-    return { t }
+    const sys_info: Ref<SystemInfo | undefined> = ref<SystemInfo>();
+    return { t, sys_info };
+  },
+  mounted() {
+    this.onRoad()
   },
   methods: {
-    onChangeTheme(event: CustomEvent) {
-      localStorage.setItem("color-scheme", event.detail.checked ? 'dark' : 'light');
-      // ダークモードとライトモード切り替え
-      document.body.classList.toggle('dark', event.detail.checked);
-      document.body.classList.toggle('light', !event.detail.checked);
-    },
+    onRoad() {
+      const url = `${process.env.VUE_APP_SERVER_URL}/${process.env.VUE_APP_SERVER_API_VER}/system`;
+      fetch(url).then(response => response.json()).then((response: SystemStatus) => {
+        this.sys_info = response.data.sys_info;
+      });
+    }
   }
 });
 </script>
 
 <template>
-  <ion-list-header>{{ t("text.version.version") }}</ion-list-header>
+  <ion-list-header>{{ t("system.server") }}</ion-list-header>
   <ion-item>
-    <ion-label slot="start">{{ t('text.version.app') }}</ion-label>
-    <ion-label slot="end" class="version">{{}}</ion-label>
+    <ion-label slot="start">{{ t("server.system.os") }}</ion-label>
+    <ion-label slot="end" class="version">{{ sys_info?.os.dist }} {{ sys_info?.os.distversion }}</ion-label>
   </ion-item>
   <ion-item>
-    <ion-label slot="start">{{ t('text.version.api') }}</ion-label>
-    <ion-label slot="end" class="version">{{}}</ion-label>
+    <ion-label slot="start">{{ t("server.system.os") }}</ion-label>
+    <ion-label slot="end" class="version">{{ sys_info?.kernel }} </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label slot="start">{{ t("server.system.os") }}</ion-label>
+    <ion-label slot="end" class="version">{{ sys_info?.cpu.type }}</ion-label>
   </ion-item>
 </template>

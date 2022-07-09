@@ -1,0 +1,6 @@
+server:
+  system:
+    os: Operating System
+    dist: Distribution
+system:
+  server: Server
