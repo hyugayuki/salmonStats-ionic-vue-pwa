@@ -23,14 +23,7 @@ export default defineComponent({
   },
   methods: {
     async onReload() {
-      const parameters = {
-        "offset": "0",
-        "limit": "25",
-        "include_details": false.toString(),
-        "order": false.toString()
-      }
-      const query = new URLSearchParams(parameters);
-      const url = `${process.env.VUE_APP_SERVER_URL}/${process.env.VUE_APP_SERVER_API_VER}/results?${query}`;
+      const url = `${process.env.VUE_APP_SERVER_URL}/${process.env.VUE_APP_SERVER_API_VER}/results`;
       fetch(url).then(response => response.json()).then(response => {
         this.results = response.results;
         console.log(this.results)
